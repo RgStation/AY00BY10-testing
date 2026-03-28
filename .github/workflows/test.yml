@@ -21,5 +21,6 @@ jobs:
 
       - name: Send coverage to Coveralls
         run: npm run coveralls
+        if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
