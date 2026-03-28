@@ -15,12 +15,18 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm install
-      - run: npm test || true
-      - run: npm run coverage || true
+      - name: Install
+        run: npm install
+
+      - name: Run tests (allow fail)
+        run: npm test
+        continue-on-error: true
+
+      - name: Run coverage (allow fail)
+        run: npm run coverage
+        continue-on-error: true
 
       - name: Send coverage to Coveralls
         run: npm run coveralls
-        if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
