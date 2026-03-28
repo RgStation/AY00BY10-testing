@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "coverage": "nyc mocha",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  "test": "mocha",
+  "coverage": "nyc --reporter=lcov mocha"
   },
   "author": "",
   "license": "MIT",
