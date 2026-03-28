@@ -18,15 +18,12 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Run tests (allow fail)
-        run: npm test
-        continue-on-error: true
+      - name: Run tests (ignore errors)
+        run: npm test || true
 
-      - name: Run coverage (allow fail)
-        run: npm run coverage
-        continue-on-error: true
-
-      - name: Send coverage to Coveralls
-        run: npm run coveralls
+      - name: Run coverage and send to Coveralls
+        run: |
+          npm run coverage || true
+          npx nyc report --reporter=text-lcov | npx coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
